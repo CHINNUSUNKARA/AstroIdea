@@ -9,6 +9,7 @@ import JobSearchApplication from './JobSearch';
 import ProfileManagement from './ProfileManagement';
 import ProfileEditing from './ProfileEditing';
 import HomePage from './HomePage';
+import AboutUs from './AboutUs';
 
 const App = () => {
   return (
@@ -25,6 +26,8 @@ const App = () => {
             <Route path='/ProfileManage' element={<ProfileManagement />}   />       
             <Route path='/ProfileEdit' element={<ProfileEditing />}   />       
             <Route path='/' element={<HomePage />}   />       
+            <Route path='/AboutUs' element={<AboutUs />}   />      
+
 
           </Routes>
         </Router>

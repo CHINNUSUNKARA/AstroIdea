@@ -22,10 +22,10 @@ const NavBar = () => {
         </div>
         <ol className="list">
           <li><a href="/">Home</a></li>
-          <li><a href="/Jobs">Find Jobs</a></li>
+          <li><a href="/JobSearch">Find Jobs</a></li>
           <li><a href="/Employers">Employers</a></li>
           <li><a href="/Admin">Admin</a></li>
-          <li><a href="/About Us">About Us</a></li>
+          <li><a href="/AboutUs">About Us</a></li>
         </ol>
         <div>
           <button>Contact us</button>
