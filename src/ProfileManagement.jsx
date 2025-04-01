@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './css/ProfileManagement.css'
+import NavBar from './NavBar'
 
 
 function ProfileManagement() {
@@ -40,6 +41,7 @@ function ProfileManagement() {
 
   return (
     <div>
+              <NavBar />
       <h1>Profile Management</h1>
 
       {/* Education Section */}

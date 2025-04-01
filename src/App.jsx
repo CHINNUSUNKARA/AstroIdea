@@ -6,6 +6,8 @@ import SignUpPage from './SignUpPage';
 import AdminDashboard from './Admin/AdminDashboard'
 import NavBar from './NavBar';
 import JobSearchApplication from './JobSearch';
+import ProfileManagement from './ProfileManagement';
+import ProfileEditing from './ProfileEditing';
 
 const App = () => {
   return (

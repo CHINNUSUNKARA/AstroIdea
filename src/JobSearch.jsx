@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import NavBar from './NavBar'
+
 
 function JobSearchApplication() {
   const [jobs, setJobs] = useState([]);
@@ -64,6 +66,7 @@ function JobSearchApplication() {
 
   return (
     <div>
+              <NavBar />
       <h1>Job Search and Application</h1>
 
       {/* Job Search */}
