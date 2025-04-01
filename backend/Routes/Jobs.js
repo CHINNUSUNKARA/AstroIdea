@@ -3,7 +3,6 @@ const mongoose = require('mongoose');
 
 const router = express.Router();
 
-// Define a Mongoose Schema and Model
 const JobSchema = new mongoose.Schema({
   title: { type: String, required: true },
   company: { type: String, required: true },
@@ -14,9 +13,7 @@ const JobSchema = new mongoose.Schema({
 
 const Job = mongoose.model('Job', JobSchema);
 
-// Routes
 
-// Create a new job
 router.post('/api/jobs', async (req, res) => {
   try {
     const job = new Job(req.body);
