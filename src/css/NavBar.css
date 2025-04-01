@@ -42,6 +42,7 @@ nav .list li {
 nav .list li a {
     text-decoration: none;
     color: #343a40;
+    background-color: #fff;
     font-size: 16px;
     transition: color 0.3s ease;
 }

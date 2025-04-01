@@ -8,6 +8,7 @@ import NavBar from './NavBar';
 import JobSearchApplication from './JobSearch';
 import ProfileManagement from './ProfileManagement';
 import ProfileEditing from './ProfileEditing';
+import HomePage from './HomePage';
 
 const App = () => {
   return (
@@ -16,14 +17,14 @@ const App = () => {
       <GoogleOAuthProvider clientId="YOUR_GOOGLE_CLIENT_ID">
         <Router>
           <Routes>
-            <Route path="/" element={<LoginPage />} />
+            <Route path="/LoginPage" element={<LoginPage />} />
             <Route path="/SignUpPage" element={<SignUpPage />} /> 
             <Route path='/AdminPage' element={<AdminDashboard />}   />       
             <Route path='/NavBar' element={<NavBar />}   />       
             <Route path='/JobSearch' element={<JobSearchApplication />}   />       
             <Route path='/ProfileManage' element={<ProfileManagement />}   />       
             <Route path='/ProfileEdit' element={<ProfileEditing />}   />       
-            <Route path='/AdminPage' element={<AdminDashboard />}   />       
+            <Route path='/' element={<HomePage />}   />       
 
           </Routes>
         </Router>

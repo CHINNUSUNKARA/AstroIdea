@@ -1,94 +1,94 @@
-/* General styling for the navigation bar */
-.navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 20px;
-    background-color: rgba(0, 0, 0, 0.5); /* Transparent background */
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 1000; /* Ensure the navbar is on top */
-    backdrop-filter: blur(5px); /* Optional: adds a blur effect on background */
+  /* General styling for the navigation bar */
+  .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 20px;
+      background-color: rgba(0, 0, 0, 0.5); /* Transparent background */
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000; /* Ensure the navbar is on top */
+      backdrop-filter: blur(5px); /* Optional: adds a blur effect on background */
+    }
+    
+    /* Logo on the left */
+    .logo {
+      height: 40px;
+      width: auto;
+      margin-left: 10px; /* Optional: adjust spacing */
+    }
+    
+    /* Container for social media icons (centered) */
+    .social-icons {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      flex-grow: 1;
+    }
+    
+    /* Social media icons style (using FontAwesome for example) */
+    .social-icons i {
+      font-size: 20px;
+      color: white;
+      cursor: pointer;
+      transition: color 0.3s;
+    }
+    
+    .social-icons i:hover {
+      color: #0073e6; /* Change to desired hover color */
+    }
+    
+    /* Signup button on the right */
+    .signup-button {
+      background-color: #0073e6;
+      color: white;
+      padding: 8px 16px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: background-color 0.3s;
+    }
+    
+    .signup-button:hover {
+      background-color: #005bb5;
+    }
+    
+  .input-feilds-mail {
+      width: 30%;
+      height: 40px;
+      gap: 40px;
+      padding: 10px;
+      border: 1px solid #ccc; 
+      border-radius: 5px; 
+      font-size: 14px; 
+      background-color: #f9f9f9; 
+      transition: border-color 0.3s ease; 
   }
-  
-  /* Logo on the left */
-  .logo {
-    height: 40px;
-    width: auto;
-    margin-left: 10px; /* Optional: adjust spacing */
-  }
-  
-  /* Container for social media icons (centered) */
-  .social-icons {
-    display: flex;
-    justify-content: center;
-    gap: 15px;
-    flex-grow: 1;
-  }
-  
-  /* Social media icons style (using FontAwesome for example) */
-  .social-icons i {
-    font-size: 20px;
-    color: white;
-    cursor: pointer;
-    transition: color 0.3s;
-  }
-  
-  .social-icons i:hover {
-    color: #0073e6; /* Change to desired hover color */
-  }
-  
-  /* Signup button on the right */
-  .signup-button {
-    background-color: #0073e6;
-    color: white;
-    padding: 8px 16px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 16px;
-    transition: background-color 0.3s;
-  }
-  
-  .signup-button:hover {
-    background-color: #005bb5;
-  }
-  
-.input-feilds-mail {
-    width: 30%;
-    height: 20px;
-    gap: 40px;
-    padding: 10px;
-    border: 1px solid #ccc; 
-    border-radius: 5px; 
-    font-size: 14px; 
-    background-color: #f9f9f9; 
-    transition: border-color 0.3s ease; 
-}
 
-.input-feilds-mail:focus {
-    border-color: #007BFF;
-    outline: none; 
-    background-color: #fff; 
-}
+  .input-feilds-mail:focus {
+      border-color: #007BFF;
+      outline: none; 
+      background-color: #fff; 
+  }
 
-.card {
-    display: flex;
-    width: 40%;
-    gap: 20px;
-    flex-direction: column;
-    align-items: center;
-    border: 1px solid #ddd; 
-    border-radius: 10px; 
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    padding: 20px; 
-    background-color: #ffffff; 
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
+  .card {
+      display: flex;
+      width: 40%;
+      gap: 20px;
+      flex-direction: column;
+      align-items: center;
+      border: 1px solid #ddd; 
+      border-radius: 10px; 
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      padding: 20px; 
+      background-color: #ffffff; 
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
 
-.card:hover {
-    transform: translateY(-5px); 
-    box-shadow: 0 6px 10px rgba(12, 12, 12, 0.15);
-}
+  .card:hover {
+      transform: translateY(-5px); 
+      box-shadow: 0 6px 10px rgba(12, 12, 12, 0.15);
+  }

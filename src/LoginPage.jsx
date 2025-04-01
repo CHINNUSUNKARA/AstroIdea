@@ -2,6 +2,7 @@ import React from 'react';
 import { GoogleLogin } from '@react-oauth/google';
 import './css/LoginPage.css';
 import { useNavigate } from 'react-router-dom';
+import NavBar from './NavBar';
 
 const LoginPage = () => {
     const navigate = useNavigate();
@@ -11,8 +12,8 @@ const LoginPage = () => {
     // Handle successful login here
   };
 
-  const onFailure = (response) => {
-    console.log('Login Failed:', response);
+  const onFailure = () => {
+    console.log('Login Failed:');
     // Handle login failure here
   };
   const handlesignup = () => {
@@ -21,15 +22,7 @@ const LoginPage = () => {
     }
   return (
     <div className="login-page">
-        <nav class="navbar">
-            <img src="/public/vite.svg" alt="logo" class="logo" />
-            <div class="social-icons">
-                <i class="fab fa-facebook-f"></i>
-                <i class="fab fa-twitter"></i>
-                <i class="fab fa-instagram"></i>
-            </div>
-            <button class="signup-button" onClick={handlesignup}>Sign Up</button>
-        </nav>
+        <NavBar  />
 
     <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginTop: '100px' }}>
       <h1>Login Page</h1>
@@ -42,7 +35,7 @@ const LoginPage = () => {
         onFailure={onFailure}
         cookiePolicy={'single_host_origin'}
       />
-      </div>
+      </div>  
     </div>
     </div>
   );
