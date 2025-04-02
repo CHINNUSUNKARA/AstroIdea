@@ -8,10 +8,15 @@ const JobSchema = new mongoose.Schema({
   company: { type: String, required: true },
   location: { type: String, required: true },
   description: { type: String, required: true },
+  job_status: { type: String, default: 'active' }, // To indicate active/inactive jobs
   postedDate: { type: Date, default: Date.now },
 });
 
+
+
 const Job = mongoose.model('Job', JobSchema);
+module.exports = Job;
+
 
 
 router.post('/api/jobs', async (req, res) => {
