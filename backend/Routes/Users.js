@@ -5,6 +5,7 @@ const router = express.Router();
 const UserSchema = new mongoose.Schema({
   name: { type: String, required: true },
   email: { type: String, required: true, unique: true },
+  status: { type: String, enum: ['Active', 'Inactive'], default: 'Active' },
   education: [
     {
       degree: { type: String, required: true },
@@ -47,28 +48,64 @@ router.post('/api/users', async (req, res) => {
   }
 });
 
-// Get all users
+// Get all users with filtering and pagination
 router.get('/api/users', async (req, res) => {
   try {
-    const users = await User.find();
-    res.status(200).json(users);
+    const { name, location, email, page = 1, limit = 10 } = req.query;
+
+    // Build a dynamic filter object
+    const filter = {};
+    if (name) filter.name = { $regex: name, $options: 'i' };
+    if (location) filter.location = { $regex: location, $options: 'i' };
+    if (email) filter.email = { $regex: email, $options: 'i' };
+
+    // Implement pagination
+    const skip = (page - 1) * limit;
+    const users = await User.find(filter).skip(skip).limit(Number(limit));
+    const totalUsers = await User.countDocuments(filter); // Count total matching users
+
+    res.status(200).json({
+      totalUsers,
+      currentPage: Number(page),
+      totalPages: Math.ceil(totalUsers / limit),
+      users,
+    });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
 });
 
-// Get a single user by ID
-router.get('/api/users/:id', async (req, res) => {
+
+
+// Get a single user by ID or search by name and location
+router.get('/api/users/:idOrName', async (req, res) => {
   try {
-    const user = await User.findById(req.params.id);
-    if (!user) {
+    const { idOrName } = req.params;
+    const { location } = req.query;
+
+    let user;
+
+    // Check if the parameter is an ID
+    if (idOrName.match(/^[0-9a-fA-F]{24}$/)) {
+      user = await User.findById(idOrName);
+    } else {
+      // Otherwise, treat it as a name and optionally filter by location
+      const filter = { name: { $regex: idOrName, $options: 'i' } };
+      if (location) filter.location = { $regex: location, $options: 'i' };
+
+      user = await User.find(filter);
+    }
+
+    if (!user || (Array.isArray(user) && user.length === 0)) {
       return res.status(404).json({ message: 'User not found' });
     }
+
     res.status(200).json(user);
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
 });
+
 
 // Update a user by ID
 router.put('/api/users/:id', async (req, res) => {

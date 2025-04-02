@@ -7,7 +7,7 @@ const userRoutes = require('./Routes/Users'); // Import the users module
 const otpRoutes = require('./Routes/Credentials')
 const {UserSchema } = require('./Routes/Users'); // Replace with the actual path to your User model file
 const User = mongoose.model('User', UserSchema);
-const { sendJobAlert, findMatchingJobs }= require('./Routes/EmailAlerts'); // Adjust the path as needed
+const { sendJobAlert, fetchLastJob } = require('./Routes/EmailAlerts'); // Adjust the path as needed
 
 
 dotenv.config();
@@ -32,20 +32,30 @@ app.use('/api', otpRoutes); // Ensure the prefix '/api' is added here
 
 
 app.post('/api/send-job-alerts', async (req, res) => {
-  const users = await User.find();
   try {
-    for (const user of users) {
-      const matchingJobs = await findMatchingJobs(user.preferredJobCriteria);
-      if (matchingJobs.length > 0) {
-        await sendJobAlert(user, matchingJobs);
-      }
+    const users = await User.find({ status: 'Active' }); // Fetch active users
+    if (users.length === 0) {
+      return res.status(404).json({ message: 'No active users found to send job alerts.' });
     }
-    res.status(200).json({ message: 'Job alerts sent!' });
+
+    const lastJob = await fetchLastJob(); // Fetch the last added job
+    if (!lastJob) {
+      return res.status(404).json({ message: 'No active job available to send alerts.' });
+    }
+
+    // Send job alerts to all active users
+    await Promise.all(
+      users.map(async (user) => {
+        await sendJobAlert(user, lastJob);
+      })
+    );
+
+    res.status(200).json({ message: 'Job alerts sent successfully!', job: lastJob });
   } catch (error) {
-    res.status(500).json({ message: 'Failed to send job alerts', error: error.message });
+    console.error('Error during job alerts processing:', error.message);
+    res.status(500).json({ message: 'Failed to send job alerts.', error: error.message });
   }
 });
-
 
 app.use((err, req, res,next) => {
   console.error(err.stack);

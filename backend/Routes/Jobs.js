@@ -3,20 +3,40 @@ const mongoose = require('mongoose');
 
 const router = express.Router();
 
+
 const JobSchema = new mongoose.Schema({
-  title: { type: String, required: true },
-  company: { type: String, required: true },
-  location: { type: String, required: true },
-  description: { type: String, required: true },
-  job_status: { type: String, default: 'active' }, // To indicate active/inactive jobs
-  postedDate: { type: Date, default: Date.now },
+  title: { type: String, required: true }, // Job title
+  company: { type: String, required: true }, // Company name
+  location: { type: String, required: true }, // Job location (e.g., Remote, City Name)
+  jobType: { type: String, enum: ['Full-time', 'Part-time', 'Contract', 'Internship'], required: true }, // Job type
+  salary: {
+    min: { type: Number }, // Minimum salary
+    max: { type: Number }, // Maximum salary
+    currency: { type: String, default: 'INR' } // Currency
+  },
+  experienceRequired: {
+    minYears: { type: Number }, // Minimum experience required
+    maxYears: { type: Number } // Maximum experience required (optional)
+  },
+  description: { type: String, required: true }, // Job description
+  skillsRequired: { type: [String], required: true }, // Required skills
+  postedDate: { type: Date, default: Date.now }, // Date job was posted
+  applicationDeadline: { type: Date }, // Deadline for applications
+  employer: {
+    name: { type: String, required: true }, // Employer/Recruiter name
+    contactEmail: { type: String, required: true }, // Email of recruiter/employer
+    phone: { type: String } // Contact phone number of recruiter/employer
+  },
+  status: { type: String, enum: ['Active', 'Closed'], default: 'Active' }, // Job status
+  vacancies: { type: Number, default: 1 }, // Number of vacancies
+  applicants: [{ 
+    userId: { type: mongoose.Schema.Types.ObjectId, ref: 'User' }, // User reference
+    appliedOn: { type: Date, default: Date.now } // Application timestamp
+  }]
 });
-
-
 
 const Job = mongoose.model('Job', JobSchema);
 module.exports = Job;
-
 
 
 router.post('/api/jobs', async (req, res) => {
