@@ -29,6 +29,8 @@ const fetchLastJob = async () => {
 
 
 const sendJobAlert = async (user, job) => {
+  const cleanTitle = job.title.replace(/\s+/g, '');
+
   if (!job) {
     console.log(`No active job available to send to user: ${user.email}`);
     return;
@@ -37,13 +39,27 @@ const sendJobAlert = async (user, job) => {
   const emailBody = `
     Hi ${user.name},
 
-    Here is the latest job update available for you:
+    We hope you're doing well!
 
-    - ${job.title} at ${job.company} (${job.location})
-    Description: ${job.description}
+We’re excited to share a new job opportunity that matches your profile:
 
-    Visit our website for more details.
-  `;
+🔹 Position : ${job.title}  
+🔹 Company: ${job.company}  
+🔹 Location: ${job.location}
+
+📝 Job Description:  
+${job.description}
+
+If you're interested, click the link below to learn more and apply:
+👉 [Visit Job Details](https://flyhii.com/jobs/${cleanTitle})
+
+Feel free to reach out if you have any questions or need support with your application.
+
+Best regards,  
+Flyhii Careers Team
+📧 flyhii@gmail.com  
+🌐 https://www.flyhii.com
+`;
 
   const mailOptions = {
     from: process.env.EMAIL,
