@@ -1,16 +1,19 @@
 const mongoose = require('mongoose');
 const express = require('express');
 const router = express.Router();
+const { isValidObjectId } = require('mongoose');
 
 const UserSchema = new mongoose.Schema({
   name: { type: String, required: true },
   email: { type: String, required: true, unique: true },
+  phone:{ type: String, required: true },
+  location: { type: String, required: true },
   status: { type: String, enum: ['Active', 'Inactive'], default: 'Active' },
   education: [
     {
       degree: { type: String, required: true },
       institution: { type: String, required: true },
-      year: { type: String, required: true },
+      year: { type: String, required: true }, 
     },
   ],
   experience: [
@@ -107,13 +110,23 @@ router.get('/api/users/:idOrName', async (req, res) => {
 });
 
 
-// Update a user by ID
-router.put('/api/users/:id', async (req, res) => {
+router.put('/api/users/:idOrPhone', async (req, res) => {
   try {
-    const updatedUser = await User.findByIdAndUpdate(req.params.id, req.body, {
-      new: true,
-      runValidators: true,
-    });
+    let updatedUser;
+    if (isValidObjectId(req.params.idOrPhone)) {
+      // Search by ID
+      updatedUser = await User.findByIdAndUpdate(req.params.idOrPhone, req.body, {
+        new: true,
+        runValidators: true,
+      });
+    } else {
+      // Search by phone number
+      updatedUser = await User.findOneAndUpdate({ phone: req.params.idOrPhone }, req.body, {
+        new: true,
+        runValidators: true,
+      });
+    }
+
     if (!updatedUser) {
       return res.status(404).json({ message: 'User not found' });
     }
@@ -123,10 +136,18 @@ router.put('/api/users/:id', async (req, res) => {
   }
 });
 
-// Delete a user by ID
-router.delete('/api/users/:id', async (req, res) => {
+
+router.delete('/api/users/:idOrPhone', async (req, res) => {
   try {
-    const deletedUser = await User.findByIdAndDelete(req.params.id);
+    let deletedUser;
+    if (isValidObjectId(req.params.idOrPhone)) {
+      // Search by ID
+      deletedUser = await User.findByIdAndDelete(req.params.idOrPhone);
+    } else {
+      // Search by phone number
+      deletedUser = await User.findOneAndDelete({ phone: req.params.idOrPhone });
+    }
+
     if (!deletedUser) {
       return res.status(404).json({ message: 'User not found' });
     }
@@ -135,5 +156,6 @@ router.delete('/api/users/:id', async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 });
+
 
 module.exports = router;

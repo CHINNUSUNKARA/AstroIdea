@@ -1,7 +1,9 @@
 const nodemailer = require('nodemailer');
+const twilio = require('twilio');
 const cron = require('node-cron');
 const User = require('./Users'); // Import User model
 const Job = require('./Jobs');   // Import Job model
+const router = require('./Users');
 
 // Configure Nodemailer
 const transporter = nodemailer.createTransport({
@@ -11,6 +13,14 @@ const transporter = nodemailer.createTransport({
     pass: "codhtlkdusajllhb", // App password for Gmail
   },
 });
+
+// Twilio config
+const accountSid = 'AC015d8a13121b863d314d802f43a1eaee';
+const authToken = 'c6293b9a4ef014ea9343ce72bceee5f7';
+const client = twilio(accountSid, authToken);
+const twilioPhone = '+91 6300231870'; // Your Twilio phone number
+const otpStore = new Map(); // Temporary store for OTPs
+
 
 
 const fetchLastJob = async () => {
@@ -110,6 +120,42 @@ const fetchUsers = async () => {
     return [];
   }
 };
+
+// Generate OTP
+const generateOTP = () => Math.floor(100000 + Math.random() * 900000).toString();
+
+// Send OTP
+router.post('/send-otp', async (req, res) => {
+  const { phone } = req.body;
+  const otp = generateOTP();
+
+  otpStore.set(phone, otp); // Save for later validation (add expiry in prod)
+
+  try {
+    await client.messages.create({
+      body: `Your OTP is ${otp}`,
+      from: twilioPhone,
+      to: phone,
+    });
+    res.status(200).json({ message: 'OTP sent successfully' });
+  } catch (err) {
+    res.status(500).json({ error: 'Failed to send OTP' });
+  }
+});
+
+// Verify OTP
+router.post('/verify-otp', (req, res) => {
+  const { phone, otp } = req.body;
+  const storedOtp = otpStore.get(phone);
+
+  if (storedOtp === otp) {
+    otpStore.delete(phone); // OTP used
+    res.json({ success: true, message: 'OTP verified. User authenticated.' });
+  } else {
+    res.status(401).json({ success: false, message: 'Invalid or expired OTP.' });
+  }
+});
+
 
 // Cron job to schedule daily email notifications for remote jobs
 cron.schedule('0 9 * * *', async () => { // Runs daily at 9:00 AM
