@@ -1,7 +1,7 @@
 /* Navigation Bar Styling */
 * {
     margin: 0px;
-    background-color: whitesmoke;
+
 }
 
 nav {
@@ -22,7 +22,7 @@ nav {
 
 /* Logo Section */
 nav div img {
-    height: 50px;
+    height:40px;
     width: auto;
 }
 
@@ -54,7 +54,7 @@ nav .list li a:hover {
 /* Button Section */
 nav div button {
     margin: 0 10px;
-    background-color: #1e5b87;
+    background-color: #3b88c0;
     color: #fff;
     border: 2px solid transparent; /* Initially transparent border */
     padding: 10px 15px;

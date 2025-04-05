@@ -1,94 +1,217 @@
-  /* General styling for the navigation bar */
-  .navbar {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 10px 20px;
-      background-color: rgba(0, 0, 0, 0.5); /* Transparent background */
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      z-index: 1000; /* Ensure the navbar is on top */
-      backdrop-filter: blur(5px); /* Optional: adds a blur effect on background */
-    }
-    
-    /* Logo on the left */
-    .logo {
-      height: 40px;
-      width: auto;
-      margin-left: 10px; /* Optional: adjust spacing */
-    }
-    
-    /* Container for social media icons (centered) */
-    .social-icons {
-      display: flex;
-      justify-content: center;
-      gap: 15px;
-      flex-grow: 1;
-    }
-    
-    /* Social media icons style (using FontAwesome for example) */
-    .social-icons i {
-      font-size: 20px;
-      color: white;
-      cursor: pointer;
-      transition: color 0.3s;
-    }
-    
-    .social-icons i:hover {
-      color: #0073e6; /* Change to desired hover color */
-    }
-    
-    /* Signup button on the right */
-    .signup-button {
-      background-color: #0073e6;
-      color: white;
-      padding: 8px 16px;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-      font-size: 16px;
-      transition: background-color 0.3s;
-    }
-    
-    .signup-button:hover {
-      background-color: #005bb5;
-    }
-    
-  .input-feilds-mail {
-      width: 30%;
-      height: 40px;
-      gap: 40px;
-      padding: 10px;
-      border: 1px solid #ccc; 
-      border-radius: 5px; 
-      font-size: 14px; 
-      background-color: #f9f9f9; 
-      transition: border-color 0.3s ease; 
+/* Container for the whole login page */
+.Login-page-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 70vh;
+}
+
+
+/* Login card containing the form and image */
+.Login-card {
+  display: flex;
+  justify-content: space-between;
+  width: 55%;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+}
+
+/* Form container styling */
+.login-form-container {
+  flex: 1;
+  padding-right: 20px;
+}
+
+/* Login illustration container */
+.login-illustration-container {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Image styling */
+.login-illustration {
+  max-width: 100%;
+  height: 400px;
+}
+h1{
+  margin: 0px;
+}
+
+/* Form and input styling */
+.Login-header {
+  margin-top: 100px;
+  margin-left: 290px;
+  text-align: left;
+}
+
+/* Adjusting form fields and buttons */
+.input-fields-mail {
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box; /* Ensure padding doesn't affect width */
+}
+
+/* Password wrapper styling */
+.password-wrapper {
+  position: relative; /* Set relative positioning for the wrapper */
+  display: flex;
+  align-items: center;
+}
+
+/* Show/Hide password button styling */
+.show-password-button {
+  position: absolute; /* Position the button inside the wrapper */
+  right: 10px; /* Align to the right end of the input field */
+  transform: translateY(-70%); /* Adjust for vertical centering */
+  background: none; /* No background color */
+  border-radius: 4px; /* Optional: rounded corners */
+  border: none;
+  color: blue;
+  cursor: pointer;
+  font-size: 14px;
+  padding: 0;
+}
+.show-password-button:hover {
+  background: none !important; /* Change color on hover */
+}
+
+.Login-button {
+  width: 85%;
+  display: flex;
+  align-content: center;
+  justify-content: center;  
+  align-items: center;
+  padding: 12px;
+  margin-left: auto;
+  margin-right: auto;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.Login-button:hover {
+  background-color: #45a049;
+}
+.remember-me-container label {
+  margin-left: 5px; /* Optional: Adjust spacing */
+}
+
+.checkbox-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.remember-me-container {
+  display: flex;
+  align-items: center;
+  white-space: nowrap; /* Prevents line break */
+  align-items: flex-end;
+}
+
+
+.forgot-password {
+  text-decoration: none;
+  color: blue; /* Optional styling for the link */
+}
+
+.or-login-with {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 20px 0;
+  font-size: 14px;
+  color: #6c757d; /* Optional: gray color for the text */
+  position: relative;
+}
+
+.or-login-with::before,
+.or-login-with::after {
+  content: "";
+  flex: 1; /* Makes the lines stretch */
+  height: 1px;
+  background-color: #ccc; /* Line color */
+  margin: 0 10px; /* Space between the text and the lines */
+}
+
+
+/* Social buttons styling */
+.social-buttons {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  margin: 0px 100px;  ;
+  margin-top: 20px;
+}
+.social-buttons button {
+  background: none;
+  cursor: pointer;
+  border-radius: 4px; /* Optional: rounded corners on hover */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Corrected: Add shadow around the button */
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.social-buttons button:hover {
+  background-color: #f0f0f0; /* Change color on hover */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Increase shadow on hover for effect */
+}
+.social-buttons button svg {
+  color: #000; /* Default icon color */
+}
+
+
+
+
+.social-buttons img {
+  width: 24px; /* Adjust size as needed */
+}
+
+
+.google-button {
+  max-width:50px;
+  color: white;
+}
+
+.facebook-button {
+  max-width: 50px;
+  color: white;
+}
+
+.linkedin-button {
+  max-width: 50px;
+  color: white;
+}
+
+.signup-footer{
+  margin-top: 20px;
+  text-align: center;
+  font-size: 14px;
+}
+
+/* Responsive adjustments */
+@media screen and (max-width: 768px) {
+  .Login-card {
+    flex-direction: column;
+    align-items: center;
   }
 
-  .input-feilds-mail:focus {
-      border-color: #007BFF;
-      outline: none; 
-      background-color: #fff; 
+  .login-form-container {
+    padding-right: 0;
   }
 
-  .card {
-      display: flex;
-      width: 40%;
-      gap: 20px;
-      flex-direction: column;
-      align-items: center;
-      border: 1px solid #ddd; 
-      border-radius: 10px; 
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-      padding: 20px; 
-      background-color: #ffffff; 
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
+  .login-illustration-container {
+    margin-top: 20px;
   }
-
-  .card:hover {
-      transform: translateY(-5px); 
-      box-shadow: 0 6px 10px rgba(12, 12, 12, 0.15);
-  }
+}
