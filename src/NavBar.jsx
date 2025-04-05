@@ -18,7 +18,7 @@ const NavBar = () => {
     <div>
       <nav>
         <div>
-          <img src="/public/vite.svg" alt="logo" />
+          <img src="../public/logo.png" alt="logo" />
         </div>
         <ol className="list">
           <li><a href="/">Home</a></li>
@@ -34,6 +34,8 @@ const NavBar = () => {
           </button>
         </div>
       </nav>
+
+      
     </div>
   );
 };
