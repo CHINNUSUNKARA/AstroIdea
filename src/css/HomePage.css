@@ -1,164 +1,294 @@
-/* General Reset */
-body, h1, h2, h4, p, input, button {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
+
+.hero-page {
+  width: 100vw; /* Full viewport width to ensure it spans the screen */
+  min-height: 95vh; /* Full viewport height */
+  padding: 40px 0px 10px 0px; /* Adjust padding to only affect top and bottom */
+  display: flex;
+  align-items: center;
+  justify-content: center; /* Center content horizontally */
+  background: linear-gradient(135deg, #edddf0 0%, #edddf0 25%, #fdfefe 50%, #edddf0 75%, #edddf0 100%);
+  overflow: hidden; /* Prevent any scrollbars caused by child elements */
+  margin: 0; /* Remove potential default margins */
+}
+
+/* Keep flex row layout for desktop */
+.hero-page-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  flex-wrap: nowrap; /* Prevent wrapping on desktop */
+  gap: 40px;
+}
+
+/* For the page to render properly on all resolutions */
+body, html {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+}
+
+
+/* Set flex-basis to avoid image pushing text */
+.hero-page-text {
+  flex: 1;
+  min-width: 300px;
+  padding-right: 20px; /* space between text and image */
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.hero-page-text h4 {
+  font-size: 2.4rem;
+  font-weight: 600;
+  color: #2d3748;
+  margin-bottom: 12px;
+}
+
+.hero-main-p {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #4a5568;
+  margin-bottom: 30px;
+}
+
+.hero-page-image {
+  flex: 1;
+  min-width: 300px;
+  text-align: center;
+}
+
+.hero-page-image img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 12px;
+}
+
+.suggestion {
+  font-size: 0.875rem; /* slightly smaller than 1rem */
+  color: #718096;
+}
   
-  .hero {   
-    width: 100%;
-    margin-top: 70px;
-    background: linear-gradient(135deg, #fdeefa 0%, #fdeefa 25%, #fdfefe 50%, #fdeefa 75%, #fdeefa 100%);
+
+/* Search Input Container */
+.search-inputs {
+  display: flex;
+  align-items: center;
+  border-radius: 8px;
+  overflow: hidden;
+  max-width: 750px; /* Adjusted max-width to allow second input more space */
+  margin-bottom: 15px;
+  background-color: #ffffff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* corrected */
+
+}
+
+/* First Input Field */
+.input-field-hero:first-child {
+  flex: 1;
+  padding: 10px 16px;
+  border: none;
+  outline: none;
+  font-size: 1rem;
+  background: transparent;
+  border-radius: 8px 0 0 8px; /* Rounded on the left side only */
+}
+
+/* Second Input Field */
+.input-field-hero:nth-child(2) {
+  flex: 1.5; /* Makes the second input field 50% wider */
+  padding: 10px 16px;
+  border: none;
+  outline: none;
+  font-size: 1rem;
+  background: transparent;
+  border-radius: 0 8px 8px 0; /* Rounded corners on the right side only */
+  margin-left: -1px; /* Prevents overlap with the divider */
+}
+
+/* Divider Line */
+.input-divider {
+  width: 1px;
+  height: 40px;
+  background-color: #3c3e3f; /* Light gray divider */
   }
+
+/* Button Style */
+.search-inputs button {
+  padding: 10px 18px;
+  background-color: #3182ce;
+  color: white;
+  border: none;
+  margin-top: 0px;
+  margin-right: 10px;
+  cursor: pointer;
+  font-weight: 500;
+  height: 100%;
+}
+
+.search-inputs button:hover {
+  background-color: #2b6cb0;
+}
+
+
+.search-inputs input {
+  flex: 1;
+  height: 50px;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+}
+
+
+.suggestion span {
+  font-weight: 600;
+  color: #2b6cb0;
+}
+
+.hero-page-image {
+  flex: 1;
+  min-width: 450px;
+  text-align: center;
+}
+
+.hero-page-image img {
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  border-radius: 12px;
+}
+
+/* Featured Jobs Section */
+.featured-jobs {
+  padding: 50px 20px;
+  background-color: #ffffff;
+  text-align: center;
+}
+
+.featured-jobs h1 {
+  font-size: 2rem;
+  margin-bottom: 10px;
+  color: #2d3748;
+}
+
+.featured-jobs p {
+  color: #718096;
+  margin-bottom: 30px;
+}
+
+.job-card-1 {
+  background-color: #edf2f7;
+  padding: 20px;
+  border-radius: 12px;
+  max-width: 400px;
+  margin: 0 auto;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
+}
+
+.job-card-1 h2 {
+  font-size: 1.4rem;
+  margin-bottom: 10px;
+  color: #2b6cb0;
+}
+
+.job-card-1 p {
+  color: #4a5568;
+}
+
+.job-card-1 button {
+  margin-top: 15px;
+  padding: 10px 20px;
+  background-color: #2b6cb0;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+/* Top Companies Section */
+.top-companies {
+  padding: 40px 20px;
+  background: #f1f5f9;
+  text-align: center;
+}
+
+.top-companies p {
+  color: #4a5568;
+}
+.section-heading {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  margin-bottom: 30px;
+  justify-content: center;
+}
+
+.section-heading::before,
+.section-heading::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background-color: #948f8f; /* light gray line */
+}
   
-  .hero-content {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin: 0 auto;
-    flex-wrap: wrap;
-    gap: 40px;
+.section-heading h2 {
+  margin: 0;
+  font-size: 1rem;
+  color: #82858a;
+  white-space: nowrap;
+  padding-bottom:none; /* Remove bottom padding */
+  font-weight: normal;
+}
+
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .hero-page-content {
+    flex-direction: column;
+    text-align: center;
   }
-  
-  .hero-text {
-    flex: 1;
-    min-width: 300px;
+
+  .hero-page-image {
+    margin-top: 30px;
   }
-  
-  .hero-text h4 {
-    font-size: 1.4rem;
-    color: #2d3748;
-    margin-bottom: 10px;
-  }
-  
-  .hero-text p {
-    font-size: 1rem;
-    color: #4a5568;
-    margin-bottom: 25px;
-  }
-  
+
   .search-card {
-    background: #fff;
-    padding: 20px;
-    border-radius: 12px;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
-    max-width: 550px;
+    max-width: 100%;
   }
-  
-  .search-card h1 {
-    font-size: 1.5rem;
-    margin-bottom: 15px;
-    color: #2b6cb0;
+}
+
+.logo-slider {
+  overflow: hidden;
+  white-space: nowrap;
+  position: relative;
+  padding: 20px 0;
+}
+
+.logo-track {
+  display: flex;
+  animation: scroll 20s linear infinite;
+  gap: 150px;
+}
+
+.logo-track img {
+  height: 60px;
+  width: auto;
+  object-fit: contain;
+  transition: filter 0.3s;
+}
+
+.logo-track img:hover {
+  filter: brightness(0.6);
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateX(0%);
   }
-  
-  .search-inputs {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    margin-bottom: 12px;
+  100% {
+    transform: translateX(-50%); /* Since we duplicated the logos */
   }
-  
-  .search-inputs input {
-    flex: 1;
-    padding: 10px;
-    border: 1px solid #cbd5e0;
-    border-radius: 8px;
-    font-size: 1rem;
-  }
-  
-  .search-inputs button {
-    padding: 10px 18px;
-    background-color: #3182ce;
-    color: #fff;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-  }
-  
-  .search-inputs button:hover {
-    background-color: #2b6cb0;
-  }
-  
-  .suggestion {
-    font-size: 0.9rem;
-    color: #718096;
-  }
-  
-  .suggestion span {
-    font-weight: 600;
-    color: #2b6cb0;
-  }
-  
-  .hero-image {
-    flex: 1;
-    min-width: 450px;
-    text-align: center;
-  }
-  
-  .hero-image img {
-    width: 100%;
-    max-width: 500px;
-    height: auto;
-    border-radius: 12px;
-  }
-  
-  /* Featured Jobs Section */
-  .featured-jobs {
-    padding: 50px 20px;
-    background-color: #ffffff;
-    text-align: center;
-  }
-  
-  .featured-jobs h1 {
-    font-size: 2rem;
-    margin-bottom: 10px;
-    color: #2d3748;
-  }
-  
-  .featured-jobs p {
-    color: #718096;
-    margin-bottom: 30px;
-  }
-  
-  .job-card {
-    background-color: #edf2f7;
-    padding: 20px;
-    border-radius: 12px;
-    max-width: 400px;
-    margin: 0 auto;
-    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
-  }
-  
-  .job-card h2 {
-    font-size: 1.4rem;
-    margin-bottom: 10px;
-    color: #2b6cb0;
-  }
-  
-  .job-card p {
-    color: #4a5568;
-  }
-  
-  .job-card button {
-    margin-top: 15px;
-    padding: 10px 20px;
-    background-color: #2b6cb0;
-    color: #fff;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-  }
-  
-  /* Top Companies */
-  .top-companies {
-    padding: 40px 20px;
-    background: #f1f5f9;
-    text-align: center;
-  }
-  
-  .top-companies h2 {
-    font-size: 1.8rem;
-    margin-bottom: 15px;
-    color: #2d3748;
-  }
-  
+}

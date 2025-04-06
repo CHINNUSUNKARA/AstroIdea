@@ -101,7 +101,7 @@ const LoginPage = () => {
                   <img src="../public/googlr logo.png" alt="Google Logo" />
                 </button>
                 <button className="facebook-button">
-                  <img src="../public/download.jpg" alt="Facebook Logo" />
+                  <img src="../public/Facebook-logo.jpg" alt="Facebook Logo" />
                 </button>
                 <button className="linkedin-button">
                   <img src="../public/LinkedinLogo.png" alt="LinkedIn Logo" />
