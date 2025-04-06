@@ -1,0 +1,164 @@
+/* General Reset */
+body, h1, h2, h4, p, input, button {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  .hero {   
+    width: 100%;
+    margin-top: 70px;
+    background: linear-gradient(135deg, #fdeefa 0%, #fdeefa 25%, #fdfefe 50%, #fdeefa 75%, #fdeefa 100%);
+  }
+  
+  .hero-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0 auto;
+    flex-wrap: wrap;
+    gap: 40px;
+  }
+  
+  .hero-text {
+    flex: 1;
+    min-width: 300px;
+  }
+  
+  .hero-text h4 {
+    font-size: 1.4rem;
+    color: #2d3748;
+    margin-bottom: 10px;
+  }
+  
+  .hero-text p {
+    font-size: 1rem;
+    color: #4a5568;
+    margin-bottom: 25px;
+  }
+  
+  .search-card {
+    background: #fff;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+    max-width: 550px;
+  }
+  
+  .search-card h1 {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+    color: #2b6cb0;
+  }
+  
+  .search-inputs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 12px;
+  }
+  
+  .search-inputs input {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #cbd5e0;
+    border-radius: 8px;
+    font-size: 1rem;
+  }
+  
+  .search-inputs button {
+    padding: 10px 18px;
+    background-color: #3182ce;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+  }
+  
+  .search-inputs button:hover {
+    background-color: #2b6cb0;
+  }
+  
+  .suggestion {
+    font-size: 0.9rem;
+    color: #718096;
+  }
+  
+  .suggestion span {
+    font-weight: 600;
+    color: #2b6cb0;
+  }
+  
+  .hero-image {
+    flex: 1;
+    min-width: 450px;
+    text-align: center;
+  }
+  
+  .hero-image img {
+    width: 100%;
+    max-width: 500px;
+    height: auto;
+    border-radius: 12px;
+  }
+  
+  /* Featured Jobs Section */
+  .featured-jobs {
+    padding: 50px 20px;
+    background-color: #ffffff;
+    text-align: center;
+  }
+  
+  .featured-jobs h1 {
+    font-size: 2rem;
+    margin-bottom: 10px;
+    color: #2d3748;
+  }
+  
+  .featured-jobs p {
+    color: #718096;
+    margin-bottom: 30px;
+  }
+  
+  .job-card {
+    background-color: #edf2f7;
+    padding: 20px;
+    border-radius: 12px;
+    max-width: 400px;
+    margin: 0 auto;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
+  }
+  
+  .job-card h2 {
+    font-size: 1.4rem;
+    margin-bottom: 10px;
+    color: #2b6cb0;
+  }
+  
+  .job-card p {
+    color: #4a5568;
+  }
+  
+  .job-card button {
+    margin-top: 15px;
+    padding: 10px 20px;
+    background-color: #2b6cb0;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+  }
+  
+  /* Top Companies */
+  .top-companies {
+    padding: 40px 20px;
+    background: #f1f5f9;
+    text-align: center;
+  }
+  
+  .top-companies h2 {
+    font-size: 1.8rem;
+    margin-bottom: 15px;
+    color: #2d3748;
+  }
+  
