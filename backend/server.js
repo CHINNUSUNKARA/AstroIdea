@@ -8,6 +8,8 @@ const otpRoutes = require('./Routes/Credentials')
 const {UserSchema } = require('./Routes/Users'); // Replace with the actual path to your User model file
 const User = mongoose.model('User', UserSchema);
 const { sendJobAlert, fetchLastJob } = require('./Routes/EmailAlerts'); // Adjust the path as needed
+const authRoutes = require('./Routes/Users');
+
 
 
 dotenv.config();
@@ -29,6 +31,8 @@ mongoose
 app.use(jobRoutes);
 app.use(userRoutes)
 app.use('/api', otpRoutes); // Ensure the prefix '/api' is added here
+app.use('/api/auth', authRoutes);
+
 
 
 app.post('/api/send-job-alerts', async (req, res) => {

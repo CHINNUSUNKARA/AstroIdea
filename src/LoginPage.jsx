@@ -5,6 +5,41 @@ import NavBar from './NavBar';
 
 const LoginPage = () => {
   const navigate = useNavigate();
+  // Add this inside your component, above the return statement
+  const handleLogin = async () => {
+    try {
+      const response = await fetch('http://localhost:5000/api/auth/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email, password }),
+      });
+  
+      const data = await response.json();
+  
+      if (response.ok) {
+        console.log('Login successful:', data);
+        alert('Login successful ✅');
+  
+        // Store in localStorage or context if needed
+        localStorage.setItem('user', JSON.stringify(data.user));
+  
+        // Navigate based on profile completeness
+        if (data.user.profileCompleted) {
+          navigate('/dashboard');
+        } else {
+          navigate('/complete-profile');
+        }
+      } else {
+        alert(`Login failed: ${data.message}`);
+      }
+    } catch (error) {
+      console.error('Error during login:', error);
+      alert('An error occurred. Please try again later.');
+    }
+  };
+  
 
   // States for email, password, and whether to show the password
   const [email, setEmail] = useState('');
@@ -89,9 +124,10 @@ const LoginPage = () => {
               </div>
 
               {/* Login Button */}
-              <button type="button" className="Login-button">
+              <button type="button" className="Login-button" onClick={handleLogin}>
                 <strong>Login</strong>
               </button>
+
             </form>
 
             <div className="social-login">

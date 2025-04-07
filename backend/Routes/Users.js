@@ -2,44 +2,158 @@ const mongoose = require('mongoose');
 const express = require('express');
 const router = express.Router();
 const { isValidObjectId } = require('mongoose');
+const bcrypt = require('bcryptjs');
 
-const UserSchema = new mongoose.Schema({
-  name: { type: String, required: true },
-  email: { type: String, required: true, unique: true },
-  phone:{ type: String, required: true },
-  location: { type: String, required: true },
-  status: { type: String, enum: ['Active', 'Inactive'], default: 'Active' },
-  education: [
-    {
-      degree: { type: String, required: true },
-      institution: { type: String, required: true },
-      year: { type: String, required: true }, 
+
+  const UserSchema = new mongoose.Schema({
+    // Basic Info for Signup
+    name: { type: String, required: true },
+    email: { type: String, required: true, unique: true },
+    password: { type: String, required: true },
+    mobile: { type: String, required: true },
+  
+    // Track whether user has completed full profile
+    profileCompleted: { type: Boolean, default: false },
+  
+    // Account status
+    status: {
+      type: String,
+      enum: ['Active', 'Inactive'],
+      default: 'Active'
     },
-  ],
-  experience: [
-    {
-      jobTitle: { type: String, required: true },
-      company: { type: String, required: true },
-      duration: { type: String, required: true },
+  
+    // Additional Profile Info
+    location: { type: String },
+  
+    education: [
+      {
+        degree: { type: String },
+        institution: { type: String },
+        year: { type: String }
+      }
+    ],
+  
+    experience: [
+      {
+        jobTitle: { type: String },
+        company: { type: String },
+        duration: { type: String }
+      }
+    ],
+  
+    projects: [
+      {
+        title: { type: String },
+        description: { type: String },
+        techStack: { type: String }
+      }
+    ],
+  
+    socialLinks: {
+      github: { type: String },
+      linkedin: { type: String },
+      codechef: { type: String },
+      leetcode: { type: String }
     },
-  ],
-  projects: [
-    {
-      title: { type: String, required: true },
-      description: { type: String, required: true },
-      techStack: { type: String, required: true },
-    },
-  ],
-  socialLinks: {
-    github: { type: String },
-    linkedin: { type: String },
-    codechef: { type: String },
-    leetcode: { type: String },
-  },
-  resume: { type: String }, 
+  
+    resume: { type: String }
+  });  
+
+  // Pre-save middleware to hash password before saving
+UserSchema.pre('save', async function (next) {
+  if (!this.isModified('password')) return next(); // If not changed, skip
+  const salt = await bcrypt.genSalt(10);
+  this.password = await bcrypt.hash(this.password, salt);
+  next();
 });
 
+
 const User = mongoose.model('User', UserSchema);
+
+router.put('/:id/complete-profile', async (req, res) => {
+  try {
+    const updatedUser = await User.findByIdAndUpdate(
+      req.params.id,
+      { ...req.body, profileCompleted: true },
+      { new: true }
+    );
+    res.status(200).json({ message: 'Profile updated', user: updatedUser });
+  } catch (err) {
+    res.status(500).json({ message: 'Error updating profile' });
+  }
+});
+
+
+// routes/auth.js
+
+router.post('/api/users', async (req, res) => {
+  const { name, email, password, mobile } = req.body;
+
+  if (!name || !email || !password || !mobile) {
+    return res.status(400).json({ message: 'All fields are required' });
+  }
+
+  try {
+    const existingUser = await User.findOne({ email });
+    if (existingUser) {
+      return res.status(409).json({ message: 'Email already registered' });
+    }
+
+    const newUser = new User({
+      name,
+      email,
+      mobile,
+      password, // Will be hashed by schema middleware
+      profileCompleted: false,
+    });
+
+    await newUser.save();
+
+    res.status(201).json({ message: 'User registered successfully' });
+
+  } catch (err) {
+    console.error('Registration Error:', err);
+    res.status(500).json({ message: 'Server error' });
+  }
+});
+
+
+// routes/auth.js
+
+router.post('/login', async (req, res) => {
+  const { email, password } = req.body;
+
+  try {
+    // 1. Check if user exists
+    const user = await User.findOne({ email });
+    if (!user) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+
+    // 2. Compare plain password with hashed one
+    const isMatch = await bcrypt.compare(password, user.password);
+    if (!isMatch) {
+      return res.status(401).json({ message: 'Invalid password' });
+    }
+
+    // 3. Login success
+    res.status(200).json({
+      message: 'Login successful',
+      user: {
+        id: user._id,
+        name: user.name,
+        email: user.email,
+        profileCompleted: user.profileCompleted,
+      }
+    });
+
+  } catch (err) {
+    console.error('Login Error:', err);
+    res.status(500).json({ message: 'Server error' });
+  }
+});
+
+
 
 router.post('/api/users', async (req, res) => {
   try {

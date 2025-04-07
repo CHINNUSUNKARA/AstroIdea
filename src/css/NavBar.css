@@ -1,93 +1,109 @@
-/* Navigation Bar Styling */
-* {
-    margin: 0px;
-
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 4%;
+  background-color: white;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  position: sticky;
+  top: 0;
+  z-index: 100;
 }
 
-nav {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    width: 100%;
-    background-color: #fff;
-    padding: 10px 20px;
-    color: #0f1010;
-    font-family: Arial, sans-serif;
-    position: fixed; /* Fix the navbar at the top */
-    top: 0; /* Align it to the top of the viewport */
-    left: 0;
-    z-index: 1000; /* Ensure it stays above other elements */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Optional: Add a subtle shadow */
+.nav-logo img {
+  width: 120px;
 }
 
-/* Logo Section */
-nav div img {
-    height:40px;
-    width: auto;
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+  font-size: 16px;
 }
 
-/* List of Links */
-nav .list {
-    display: flex;
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
+.nav-links li a {
+  text-decoration: none;
+  color: #333;
+  transition: color 0.3s;
 }
 
-nav .list li {
-    margin: 0 15px;
-    font-weight: bold;
+.nav-links li a:hover {
+  color: #007bff;
 }
 
-nav .list li a {
-    text-decoration: none;
-    color: #343a40;
-    background-color: #fff;
-    font-size: 16px;
-    transition: color 0.3s ease;
+.nav-buttons {
+  display: flex;
+  align-items: center;
+  gap: 15px;
 }
 
-nav .list li a:hover {
-    color: #671097;
+.contact-btn, .auth-btn {
+  padding: 8px 15px;
+  border: none;
+  background-color: #007bff;
+  color: white;
+  border-radius: 20px;
+  cursor: pointer;
+  font-weight: 500;
 }
 
-/* Button Section */
-nav div button {
-    margin: 0 10px;
-    background-color: #3b88c0;
-    color: #fff;
-    border: 2px solid transparent; /* Initially transparent border */
-    padding: 10px 15px;
-    border-radius: 5px;
-    font-size: 16px;
-    cursor: pointer;
-    transition: background-color 0.3s ease, border-color 0.3s ease; /* Smooth transition for border color */
+.contact-btn:hover, .auth-btn:hover {
+  background-color: #0056b3;
 }
 
-nav div button:hover {
-    background-color: #fff;
-    color: #1e5b87;
-    border-color: #1e5b87; /* Border color appears on hover */
-    border-radius: 5px;
+.profile-dropdown {
+  position: relative;
 }
 
-/* Responsive Design */
+.profile-icon {
+  font-size: 38px;
+  align-content: center;
+  cursor: pointer;
+}
+.dropdown-menu {
+  position: absolute;
+  right: 0;
+  background-color: rgb(244, 197, 238);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+  border-radius: 10px;
+  overflow: hidden;
+  z-index: 10;
+}
+
+.dropdown-menu button {
+  display: block;
+  width: 100%; /* Ensure it takes the full width of the dropdown */
+  max-width: none; /* Remove the restriction on width */
+  padding: 10px 20px;
+  background: none;
+  border: none;
+  text-align: left;
+  font-size: 15px;
+  cursor: pointer;
+  transition: background 0.3s;
+  white-space: nowrap; /* Prevent text from wrapping */
+}
+
+.dropdown-menu button:hover {
+  background-color: #f171d1;
+}
+.nav-profile-list{
+    color: #0056b3;
+    
+}
+
 @media (max-width: 768px) {
-    nav {
-        flex-direction: column;
-        align-items: flex-start;
-    }
+  .nav-links {
+    display: none;
+  }
 
-    .list {
-        flex-direction: column;
-        align-items: flex-start;
-    }
+  .navbar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
 
-    .list li {
-        margin: 5px 0;
-    }
-
-    nav div button {
-        margin: 10px 5px;
-    }
+  .nav-buttons {
+    width: 100%;
+    justify-content: space-between;
+  }
 }

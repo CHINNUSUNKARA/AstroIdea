@@ -11,6 +11,7 @@ import ProfileEditing from './ProfileEditing';
 import HomePage from './HomePage';
 import AboutUs from './AboutUs';
 import Employee from './Employee';
+import CompleteProfile from './CompleteProfile';
 
 const App = () => {
   return (
@@ -29,7 +30,8 @@ const App = () => {
             <Route path='/' element={<HomePage />}   />       
             <Route path='/AboutUs' element={<AboutUs />}   />      
             <Route path='/Employers' element={<Employee />}   />   
-            <Route path='/AboutUs' element={<AboutUs />}   />                
+            <Route path='/AboutUs' element={<AboutUs />}   />      
+            <Route path='/complete-profile' element={<CompleteProfile />}   />      
 
 
           </Routes>
