@@ -24,9 +24,12 @@ const SignUpPage = () => {
           <input className="form-input" id='mobile' type="tel" placeholder="Enter your Mobile number" required />
           <p className="form-note">Recruiters will contact you on this number</p>
           <div className="checkbox-section">
+          <label>
             <input type="checkbox" required />
-            <span>Send me important updates & promotions via SMS, email, and WhatsApp</span>
-          </div>
+            <span>Send me important updates & promotions via SMS, email, and <img src="../public/User Assests/Logos/whatsapp-logo.png" width="20px"/> WhatsApp</span>
+          </label> 
+        </div>
+
 
           <p className="terms-text">
             By clicking Register, you agree to the <a href="#">Terms and Conditions</a> & <a href="#">Privacy Policy</a> of AlwaysApply.com
