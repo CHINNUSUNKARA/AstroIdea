@@ -136,11 +136,10 @@ body, html {
 .search-inputs input {
   flex: 1;
   height: 50px;
-  border: none;
+  border: none;  
   border-radius: 8px;
   font-size: 1rem;
 }
-
 
 .suggestion span {
   font-weight: 600;

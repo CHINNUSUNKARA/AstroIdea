@@ -17,7 +17,7 @@ const HomePage = () => {
             <div class="search-inputs">
               <input type="text" class="input-field-hero" placeholder="Search job title..." />
               <div class="input-divider"></div>
-              <input type="text" class="input-field-hero" placeholder="Location..." />
+              <input style={{ border:"none",  }} type="text" class="input-field-hero" placeholder="Location..." />
               <button>Find Job</button>
             </div>
 
