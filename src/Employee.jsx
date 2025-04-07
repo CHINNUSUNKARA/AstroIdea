@@ -6,10 +6,9 @@ const Employee = () => {
   return (
     <div className="employee-page">
       <NavBar />
+      <form className='card-employee'>
       <h1 id="title">Post a job</h1>
-      <p id="add">Find the best talent for your company</p>
-      
-      <form>
+      <p className='add'>Find the best talent for your company</p>
         <label htmlFor="job-title">Job Title</label>
         <input type="text" id="job-title" placeholder="Add job title, role vacancies etc" />
 
