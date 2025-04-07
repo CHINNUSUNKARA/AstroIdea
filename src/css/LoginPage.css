@@ -1,9 +1,11 @@
+
 /* Container for the whole login page */
 .Login-page-container {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 70vh;
+  overflow: hidden;
 }
 
 

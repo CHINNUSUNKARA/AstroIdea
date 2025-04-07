@@ -1,88 +1,55 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import './css/SignUpPage.css';
 import NavBar from './NavBar';
 
 const SignUpPage = () => {
-  const navigate = useNavigate();
-  const [email, setEmail] = useState('');
-  const [fullName, setFullName] = useState('');
-  const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
-  const [otp, setOtp] = useState('');
-  const [isOtpSent, setIsOtpSent] = useState(false);
-
-  const handleSendOtp = () => {
-    console.log(`Sending OTP to ${email}`);
-    setIsOtpSent(true);
-  };
-
-  const handleVerifyOtp = () => {
-    console.log(`Verifying OTP: ${otp}`);
-    alert('OTP Verified Successfully!');
-  };
-
-  const handleGoogleSignIn = () => {
-    console.log('Signing in with Google');
-    alert('Signed in with Google!');
-  };
-
   return (
     <div className="sign-up-page">
       <NavBar />
-      <h1 style={{marginTop:"40px" ,fontSize:"2 rem"}}>Sign Up</h1>
+      <div className="sign-up-container">
+        <h4 className="sign-up-title">Registration form</h4>
+        <p className="sign-up-subtitle">Register to apply for jobs of your choice all over the world</p>
+        <section>
+        <form className="sign-up-form">
+          <label htmlFor="f-name">Full name <span style={{color:"red"}}>*</span></label>
+          <input className="form-input" id='f-name' type="text" placeholder="Enter your full name" required />
+          <label htmlFor="email">Email ID <span style={{color:"red"}}>*</span></label>
+          <input className="form-input"  id='email' type="email" placeholder="Enter your email id" required />
+          <p className="form-note">Job notifications will be sent to this email id</p>
+          <label htmlFor="password">Password <span style={{color:"red"}}>*</span></label>
+          <input className="form-input" id='password' type="password" placeholder="(Minimum 6 characters)" required />
+          <p className="form-note">Remember your password</p>
+          <label htmlFor="mobile">Mobile number <span style={{color:"red"}}>*</span></label>
+          <input className="form-input" id='mobile' type="tel" placeholder="Enter your Mobile number" required />
+          <p className="form-note">Recruiters will contact you on this number</p>
+          <div className="checkbox-section">
+            <input type="checkbox" required />
+            <span>Send me important updates & promotions via SMS, email, and WhatsApp</span>
+          </div>
 
+          <p className="terms-text">
+            By clicking Register, you agree to the <a href="#">Terms and Conditions</a> & <a href="#">Privacy Policy</a> of AlwaysApply.com
+          </p>
 
-      <div className="card" >
-        <input
-          type="text"
-          placeholder="Enter your full name"
-          className="input-field"
-          value={fullName}
-          onChange={(e) => setFullName(e.target.value)}
-        />
-        <input
-          type="email"
-          placeholder="Enter your email"
-          className="input-field"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
-        <input
-          type="password"
-          placeholder="Enter your password"
-          className="input-field"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
-        <input
-          type="password"
-          placeholder="Confirm your password"
-          className="input-field"
-          value={confirmPassword}
-          onChange={(e) => setConfirmPassword(e.target.value)}
-        />
-        {isOtpSent && (
-          <input
-            type="text"
-            placeholder="Enter OTP"
-            className="input-field"
-            value={otp}
-            onChange={(e) => setOtp(e.target.value)}
-          />
-        )}
-        {!isOtpSent ? (
-          <button className="otp-button" onClick={handleSendOtp}>
-            Send OTP
-          </button>
-        ) : (
-          <button className="otp-button" onClick={handleVerifyOtp}>
-            Verify OTP
-          </button>
-        )}
-        <button className="google-signin" onClick={handleGoogleSignIn}>
-          Sign in with Google
-        </button>
+          <button className="register-button">Register now</button>
+        </form>
+
+        <div className="social-login">
+              <p className="or-login-with">or login with</p>
+              <div className="social-buttons">
+                <button className="google-button">
+                  <img src="../public/googlr logo.png" alt="Google Logo" />
+                </button>
+                <button className="facebook-button">
+                  <img src="../public/Facebook-logo.jpg" alt="Facebook Logo" />
+                </button>
+                <button className="linkedin-button">
+                  <img src="../public/LinkedinLogo.png" alt="LinkedIn Logo" />
+                </button>
+              </div>
+            </div>
+        </section>
       </div>
     </div>
   );

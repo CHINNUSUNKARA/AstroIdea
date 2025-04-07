@@ -31,9 +31,9 @@ const LoginPage = () => {
   };
 
   return (
-    <>
+    < >
       <NavBar />
-      <div className="Login-header">
+      <div className="Login-header" styles={{oveflow:"hidden"}}>
       <h1 style={{textAlign:"left" ,margin:"0px"}}>Login to your Account</h1>
       <p >Welcome back! Select the below login methods.</p></div>
       <div className="Login-page-container">        

@@ -28,7 +28,6 @@ body, html {
   margin: 0;
   padding: 0;
   width: 100%;
-  height: 100%;
 }
 
 
@@ -179,8 +178,8 @@ body, html {
   margin-bottom: 30px;
 }
 
-.job-card-1 {
-  background-color: #edf2f7;
+.job-card {
+  background-color: #fdf5fe;
   padding: 20px;
   border-radius: 12px;
   max-width: 400px;
@@ -188,17 +187,17 @@ body, html {
   box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
 }
 
-.job-card-1 h2 {
+.job-card h2 {
   font-size: 1.4rem;
   margin-bottom: 10px;
   color: #2b6cb0;
 }
 
-.job-card-1 p {
+.job-card p {
   color: #4a5568;
 }
 
-.job-card-1 button {
+.job-card button {
   margin-top: 15px;
   padding: 10px 20px;
   background-color: #2b6cb0;
