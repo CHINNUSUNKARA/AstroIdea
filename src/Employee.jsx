@@ -1,8 +1,14 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import NavBar from './NavBar';
 import './css/Employee.css';
 
 const Employee = () => {
+  const editorRef = useRef(null);
+
+  const applyCommand = (command, value = null) => {
+    document.execCommand(command, false, value);
+    editorRef.current.focus();
+  };
   return (
     <div className="employee-page">
       <NavBar />
@@ -277,36 +283,65 @@ const Employee = () => {
         </select>
 
         <label htmlFor="desc">Job Description</label>
-        <textarea id="desc" placeholder="Add your description..." rows="12" />
-        <div className="description-editor">
-        <div className="desc-toolbar">
-      <select className="font-size">
-        <option>14</option>
-        <option>16</option>
-        <option>18</option>
-        <option>20</option>
-      </select>
+<textarea id="desc" placeholder="Add your description..." rows="12" />
 
-      <button className="toolbar-btn">T</button>
-      <div className="color-circle"></div>
-      <button className="toolbar-btn"><strong>B</strong></button>
-      <button className="toolbar-btn"><em>I</em></button>
-      <button className="toolbar-btn"><u>U</u></button>
-      <button className="toolbar-btn">S</button>
+<div className="description-editor">
+      <label htmlFor="desc">Job Description</label>
+      <div
+        id="desc"
+        className="rich-editor"
+        contentEditable="true"
+        ref={editorRef}
+        data-placeholder="Add your description..."
+      ></div>
 
-      <button className="toolbar-btn">≡</button>
-      <button className="toolbar-btn">≡</button>
-      <button className="toolbar-btn">≡</button>
+      <div className="desc-toolbar">
+        {/* Text Formatting */}
+        <div className="toolbar-group">
+          <select
+            className="font-size"
+            onChange={(e) => applyCommand("fontSize", e.target.value)}
+          >
+            <option value="2">14</option>
+            <option value="3">16</option>
+            <option value="4">18</option>
+            <option value="5">20</option>
+          </select>
 
-      <button className="toolbar-btn">1.</button>
-      <button className="toolbar-btn">•</button>
+          <input
+            type="color"
+            className="color-picker"
+            title="Choose text color"
+            onChange={(e) => applyCommand("foreColor", e.target.value)}
+          />
 
-      <button className="toolbar-btn">🖼</button>
-      <button className="toolbar-btn">🔗</button>
+          <button type="button" className="toolbar-btn" onClick={() => applyCommand("bold")}>B</button>
+          <button type="button" className="toolbar-btn" onClick={() => applyCommand("italic")}>I</button>
+          <button type="button"  className="toolbar-btn" onClick={() => applyCommand("underline")}>U</button>
+          <button type="button"  className="toolbar-btn" onClick={() => applyCommand("strikeThrough")}>S</button>
+        </div>
+
+        {/* Alignment */}
+        <div className="toolbar-group">
+          <button type="button" className="toolbar-btn" onClick={() => applyCommand("justifyLeft")}>⇤</button>
+          <button type="button" className="toolbar-btn" onClick={() => applyCommand("justifyCenter")}>↔</button>
+          <button type="button" className="toolbar-btn" onClick={() => applyCommand("justifyRight")}>⇥</button>
+        </div>
+
+        {/* Lists */}
+        <div className="toolbar-group">
+          <button type="button" className="toolbar-btn" onClick={() => applyCommand("insertOrderedList")}>1.</button>
+          <button type="button" className="toolbar-btn" onClick={() => applyCommand("insertUnorderedList")}>•</button>
+        </div>
+
+        {/* Insert */}
+        <div className="toolbar-group">
+          <button type="button" className="toolbar-btn" onClick={() => applyCommand("insertImage", prompt("Enter image URL"))}>🖼</button>
+          <button type="button" className="toolbar-btn" onClick={() => applyCommand("createLink", prompt("Enter link URL"))}>🔗</button>
+        </div>
+      </div>
     </div>
 
-  
-</div>
 
         <button type="submit" className="post-button">Post Job</button>
       </form>
