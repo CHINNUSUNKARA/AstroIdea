@@ -24,7 +24,7 @@ const NavBar = () => {
           <li><a href="/">Home</a></li>
           <li><a href="/JobSearch">Find Jobs</a></li>
           <li><a href="/Employers">Employers</a></li>
-          <li><a href="/Admin">Admin</a></li>
+          <li><a href="/AdminPage">Admin</a></li>
           <li><a href="/AboutUs">About Us</a></li>
         </ol>
         <div>

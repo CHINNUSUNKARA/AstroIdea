@@ -28,7 +28,8 @@ const App = () => {
             <Route path='/ProfileEdit' element={<ProfileEditing />}   />       
             <Route path='/' element={<HomePage />}   />       
             <Route path='/AboutUs' element={<AboutUs />}   />      
-            <Route path='/Employers' element={<Employee />}   />      
+            <Route path='/Employers' element={<Employee />}   />   
+            <Route path='/AboutUs' element={<AboutUs />}   />                
 
 
           </Routes>
